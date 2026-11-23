@@ -173,7 +173,7 @@ function showStatus(html) { status.innerHTML = html; status.hidden = false; }
 function onPosition(pos) {
   const { latitude: lat, longitude: lng, accuracy, altitude, heading, speed } = pos.coords;
   const first = !me;
-  me = { lat, lng, accuracy };
+  me = { lat, lng, accuracy, alt: altitude, at: Date.now() };
   btnLocate.classList.remove('busy');
   const ll = [lat, lng];
   if (!meMarker) {

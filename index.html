@@ -33,16 +33,75 @@
   </button>
 </div>
 
-<section id="sheet" class="sheet" aria-label="Elenco sentieri">
+<button id="btn-note" class="fab fab-note" hiddenaria-label="Nuova nota o foto in questo punto" title="Nuova nota / foto">
+  <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M19 2v6M16 5h6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+</button>
+
+<section id="sheet" class="sheet" aria-label="Sentieri e note">
   <button id="sheet-handle" class="sheet-handle" aria-expanded="false">
     <span class="grip"></span>
     <span id="sheet-title">Sentieri</span>
   </button>
+  <div class="tabs" role="tablist">
+    <button role="tab" data-tab="list" class="on" aria-selected="true">Sentieri</button>
+    <button role="tab" data-tab="notes" aria-selected="false">Note <span id="notes-count" class="count">0</span></button>
+  </div>
   <div id="list" class="list"></div>
-  <p class="foot">Tracce: rilievi personali e komoot. La posizione resta sul tuo telefono, non viene inviata a nessuno.</p>
+  <div id="notes" class="list" hidden>
+    <div id="sync-box" class="sync-box"></div>
+    <div id="notes-list"></div>
+    <div class="notes-tools">
+      <button id="btn-gpx" class="btn">Esporta punti GPX</button>
+    </div>
+  </div>
+  <p class="foot">Tracce: rilievi personali e komoot. La tua posizione GPS resta sul telefono; le note dei sopralluoghi sono pubbliche.</p>
 </section>
+
+<dialog id="note-dlg" class="dlg">
+  <form id="note-form" method="dialog">
+    <header class="dlg-head">
+      <h3 id="note-dlg-title">Nuova nota</h3>
+      <button type="button" class="x" id="note-cancel" aria-label="Annulla">✕</button>
+    </header>
+    <div id="note-where" class="where">Cerco la posizione…</div>
+    <div class="types" id="note-types"></div>
+    <textarea id="note-text" rows="4" placeholder="Cosa hai visto? (es. albero caduto, bivio non segnato, fonte d'acqua…)"></textarea>
+    <div id="note-photos" class="thumbs"></div>
+    <div class="photo-btns">
+      <label class="btn"><input id="photo-cam" type="file" accept="image/*" capture="environment" multiple hidden>📷 Scatta foto</label>
+      <label class="btn"><input id="photo-pick" type="file" accept="image/*" multiple hidden>🖼️ Dalla galleria</label>
+    </div>
+    <footer class="dlg-foot">
+      <button type="button" id="note-delete" class="btn danger" hidden>Elimina</button>
+      <button type="submit" id="note-save" class="btn primary">Salva</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog id="gh-dlg" class="dlg">
+  <form id="gh-form" method="dialog">
+    <header class="dlg-head">
+      <h3>Collega GitHub per caricare le note</h3>
+      <button type="button" class="x" id="gh-cancel" aria-label="Annulla">✕</button>
+    </header>
+    <p class="help">Serve una volta sola su ogni telefono. La chiave resta salvata solo su questo dispositivo.</p>
+    <ol class="help">
+      <li>Apri <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → Nuova chiave (fine-grained)</a>.</li>
+      <li>Nome: <i>Sopralluoghi Monte Nero</i>. Scadenza: quella che preferisci.</li>
+      <li><b>Repository access</b> → <i>Only select repositories</i> → <b>sentieri-monte-nero</b>.</li>
+      <li><b>Permissions</b> → <i>Contents</i> → <b>Read and write</b>. Nient'altro.</li>
+      <li>Genera la chiave, copiala e incollala qui sotto.</li>
+    </ol>
+    <input id="gh-token" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="github_pat_…">
+    <div id="gh-msg" class="where"></div>
+    <footer class="dlg-foot"><button type="submit" class="btn primary" id="gh-save">Collega</button></footer>
+  </form>
+</dialog>
+
+<div id="viewer" class="viewer" hidden><img alt=""><button class="x" aria-label="Chiudi">✕</button></div>
 
 <script src="vendor/leaflet.js"></script>
 <script src="app.js"></script>
+<script src="notes.js"></script>
 </body>
 </html>
