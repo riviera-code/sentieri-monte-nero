@@ -25,6 +25,7 @@ const layers = {
 };
 const baseName = ls.get('base', 'Topografica');
 const map = L.map('map', { zoomControl: false, layers: [layers[baseName] || layers['Topografica']] });
+map.attributionControl.setPrefix(false);
 L.control.layers(layers, null, { position: 'bottomright' }).addTo(map);
 L.control.scale({ imperial: false, position: 'bottomleft' }).addTo(map);
 map.on('baselayerchange', (e) => ls.set('base', e.name));

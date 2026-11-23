@@ -59,6 +59,7 @@ button{font:inherit;color:inherit}
 .pop .meta{margin-bottom:8px}
 .pop a{display:inline-block;margin:2px 8px 0 0;color:var(--accent);font-weight:600;text-decoration:none}
 .leaflet-container{font:inherit}
+.leaflet-container .leaflet-control-attribution{font-size:10px;max-width:58vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .leaflet-control-layers{border-radius:10px!important}
 .leaflet-bottom{bottom:calc(60px + env(safe-area-inset-bottom))}
 .leaflet-bottom.leaflet-right .leaflet-control{margin-right:12px}
