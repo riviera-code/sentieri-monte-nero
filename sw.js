@@ -1,6 +1,6 @@
 // Service worker: l'app e i sentieri restano disponibili offline,
 // e i riquadri della mappa visti (o scaricati) vengono conservati.
-const APP_CACHE = 'app-v2';
+const APP_CACHE = 'app-v3';
 const TILE_CACHE = 'tiles-v1';
 const APP_FILES = [
   './', 'index.html', 'style.css', 'app.js', 'tracks.json', 'manifest.webmanifest',
@@ -46,7 +46,7 @@ self.addEventListener('fetch', (e) => {
   // File dell'app: rete se c'è (così gli aggiornamenti arrivano), altrimenti copia salvata.
   if (url.origin === self.location.origin) {
     e.respondWith(
-      fetch(req)
+      fetch(req, { cache: 'no-cache' })
         .then((res) => {
           if (res.ok) caches.open(APP_CACHE).then((c) => c.put(req, res.clone()));
           return res;
