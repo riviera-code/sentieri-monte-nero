@@ -1,0 +1,68 @@
+:root{
+  --bg:#ffffff; --fg:#17201b; --muted:#5d6a62; --line:#e3e8e4;
+  --accent:#1f6f43; --fab:#ffffff; --shadow:0 2px 10px rgba(0,0,0,.25);
+  --me:#1a73e8;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#18201b; --fg:#eef3ef; --muted:#a3b1a8; --line:#2c3830; --fab:#222c25; --accent:#5fc28a; }
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);
+  font:15px/1.35 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;-webkit-tap-highlight-color:transparent}
+#map{position:fixed;inset:0;background:#dfe6e0}
+button{font:inherit;color:inherit}
+
+/* floating buttons */
+.fab-col{position:fixed;right:12px;top:calc(env(safe-area-inset-top) + 12px);display:flex;flex-direction:column;gap:10px;z-index:1000}
+.fab{width:48px;height:48px;border-radius:50%;border:0;background:var(--fab);color:var(--fg);box-shadow:var(--shadow);
+  display:grid;place-items:center;cursor:pointer}
+.fab:active{transform:scale(.95)}
+.fab.on{color:var(--me)}
+.fab.follow{background:var(--me);color:#fff}
+.fab.busy{animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.5}}
+
+/* status line (position info) */
+.status{position:fixed;left:12px;right:72px;top:calc(env(safe-area-inset-top) + 12px);z-index:1000;
+  background:var(--bg);color:var(--fg);border-radius:12px;box-shadow:var(--shadow);padding:8px 12px;font-size:14px}
+.status b{font-weight:600}
+.status .sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+.status .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:baseline}
+
+/* bottom sheet */
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:1000;background:var(--bg);
+  border-radius:16px 16px 0 0;box-shadow:0 -2px 12px rgba(0,0,0,.2);
+  max-height:62vh;display:flex;flex-direction:column;
+  transform:translateY(calc(100% - 56px - env(safe-area-inset-bottom)));transition:transform .25s ease}
+.sheet.open{transform:none}
+.sheet-handle{border:0;background:none;padding:8px 16px 12px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;
+  padding-bottom:calc(12px + env(safe-area-inset-bottom))}
+.sheet.open .sheet-handle{padding-bottom:12px}
+.grip{width:40px;height:5px;border-radius:3px;background:var(--line)}
+#sheet-title{font-weight:600}
+.list{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 8px;border-top:1px solid var(--line)}
+.foot{margin:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
+.row{display:flex;align-items:center;gap:10px;padding:11px 8px;border-bottom:1px solid var(--line);cursor:pointer}
+.row:last-child{border-bottom:0}
+.row.off .name,.row.off .meta{opacity:.4}
+.sw{width:22px;height:6px;border-radius:3px;flex:none}
+.txt{flex:1;min-width:0}
+.name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta{color:var(--muted);font-size:12.5px;font-variant-numeric:tabular-nums}
+.near{color:var(--accent);font-weight:600}
+.eye{border:0;background:none;width:40px;height:36px;border-radius:8px;color:var(--muted);flex:none;cursor:pointer}
+.eye:active{background:var(--line)}
+
+/* map popups */
+.leaflet-popup-content{margin:12px 14px;font-size:14px}
+.pop h4{margin:0 0 4px;font-size:15px}
+.pop .meta{margin-bottom:8px}
+.pop a{display:inline-block;margin:2px 8px 0 0;color:var(--accent);font-weight:600;text-decoration:none}
+.leaflet-container{font:inherit}
+.leaflet-control-layers{border-radius:10px!important}
+.leaflet-bottom{bottom:calc(60px + env(safe-area-inset-bottom))}
+.leaflet-bottom.leaflet-right .leaflet-control{margin-right:12px}
+.me-dot{width:18px;height:18px;border-radius:50%;background:var(--me);border:3px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.2),0 1px 4px rgba(0,0,0,.4)}
+.me-wrap{position:relative;width:18px;height:18px}
+.me-arrow{position:absolute;left:50%;top:50%;width:0;height:0;margin-left:-7px;margin-top:-24px;
+  border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid var(--me);transform-origin:7px 24px}
