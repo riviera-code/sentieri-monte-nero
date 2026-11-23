@@ -16,6 +16,12 @@ Mappa da portare in giro dei sentieri e-bike/MTB di Monte Nero e dintorni (Bordi
 - **Scarica GPX** e **Apri su komoot** dal fumetto di ogni sentiero.
 - **Funziona senza segnale**: il pulsante con la freccia in giù salva sul telefono la mappa topografica della zona (circa 30 MB, meglio col Wi-Fi). Anche i riquadri già visti restano salvati.
 
+## Giri completati
+
+Scheda **Giri** nel pannello in basso: le uscite registrate, con data, orari, km, dislivello e tempo in movimento. Sulla mappa sono tratteggiate e stanno sotto i sentieri; l'occhio le nasconde. Non contano per "Sei su…".
+
+- 23.11.26 · **Monte Carparo - Bordighera**: 40,9 km, ↑ 1499 m.
+
 ## Note e foto dei sopralluoghi
 
 Sono **pubbliche**: chiunque apre la mappa le vede (segnaposto con icona, scheda *Note* nel pannello in basso). Solo chi ha collegato una chiave GitHub può aggiungerle.
@@ -46,7 +52,8 @@ Si apre a tutto schermo come un'app e funziona anche offline.
 - `index.html`, `app.js`, `notes.js`, `style.css`: l'app (Leaflet 1.9.4 in `vendor/`).
 - `sopralluoghi/`: note e foto caricate dall'app (si crea al primo caricamento).
 - `tracks.json`: le tracce usate dalla mappa.
-- `gpx/`: le tracce in GPX.
+- `rides.json`: i giri completati (traccia semplificata e statistiche).
+- `gpx/`: le tracce in GPX; `gpx/giri/` i giri completi.
 - `sw.js`, `manifest.webmanifest`: funzionamento offline e installazione.
 
 Mappe: © OpenTopoMap, © OpenStreetMap, © Esri. Tracce: rilievi personali e komoot.

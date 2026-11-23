@@ -96,10 +96,65 @@ function drawTrack(t) {
 }
 
 function setHidden(t, hide) {
-  if (hide) { hidden.add(t.id); group.removeLayer(t.group); }
-  else { hidden.delete(t.id); group.addLayer(t.group); }
+  const g = t.ride ? rideGroup : group;
+  if (hide) { hidden.add(t.id); g.removeLayer(t.group); }
+  else { hidden.delete(t.id); g.addLayer(t.group); }
   ls.set('hidden', [...hidden]);
-  renderList();
+  if (t.ride) renderRides(); else renderList();
+}
+
+// ---------- giri completati ----------
+// Uscite registrate: linea tratteggiata sotto i sentieri, non contano per "Sei su…".
+let rides = [];
+const rideGroup = L.featureGroup().addTo(map);
+map.createPane('rides').style.zIndex = 390; // sotto i sentieri (overlayPane = 400)
+const ridePane = { pane: 'rides' };
+const rideDate = (d) => new Date(d + 'T12:00:00').toLocaleDateString('it-IT', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
+const rideTime = (iso) => new Date(iso).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
+const rideDur = (m) => `${Math.floor(m / 60)} h ${String(m % 60).padStart(2, '0')}`;
+
+function ridePopupHtml(r) {
+  const links = [`<a href="${r.gpx}" download>Scarica GPX</a>`];
+  if (r.url) links.push(`<a href="${r.url}" target="_blank" rel="noopener">Apri su komoot</a>`);
+  return `<div class="pop"><h4></h4><div class="meta">${rideDate(r.date)} · ${rideTime(r.start)}–${rideTime(r.end)}<br>`
+    + `${fmtKm(r.len)} · ↑ ${r.up} m · ↓ ${r.down} m · max ${r.maxEle} m<br>${rideDur(r.moving)} in movimento</div>${links.join('')}</div>`;
+}
+
+function drawRide(r) {
+  r.ride = true;
+  const g = L.featureGroup();
+  const ll = r.pts;
+  L.polyline(ll, { ...ridePane, color: '#fff', weight: 7, opacity: 0.7, interactive: false }).addTo(g);
+  r.line = L.polyline(ll, { ...ridePane, color: r.color, weight: 4, dashArray: '8 7', lineCap: 'butt' }).addTo(g);
+  L.polyline(ll, { ...ridePane, color: '#000', weight: 22, opacity: 0 }).addTo(g);
+  L.circleMarker(ll[0], { ...ridePane, radius: 5, color: '#fff', weight: 2, fillColor: r.color, fillOpacity: 1 }).bindTooltip(r.name + ' · partenza').addTo(g);
+  L.circleMarker(ll[ll.length - 1], { ...ridePane, radius: 5, color: r.color, weight: 3, fillColor: '#fff', fillOpacity: 1 }).bindTooltip(r.name + ' · arrivo').addTo(g);
+  const html = ridePopupHtml(r);
+  g.bindPopup(() => { const d = document.createElement('div'); d.innerHTML = html; d.querySelector('h4').textContent = r.name; return d; },
+    { autoPanPaddingTopLeft: [10, 80], autoPanPaddingBottomRight: [70, 80] });
+  g.on('popupopen', () => r.line.setStyle({ weight: 7 }));
+  g.on('popupclose', () => r.line.setStyle({ weight: 4 }));
+  r.group = g;
+  if (!hidden.has(r.id)) g.addTo(rideGroup);
+}
+
+function renderRides() {
+  const box = $('#rides');
+  box.textContent = '';
+  $('#rides-count').textContent = rides.length;
+  if (!rides.length) { box.innerHTML = '<div class="empty">Nessun giro ancora.</div>'; return; }
+  for (const r of rides) {
+    const row = document.createElement('div');
+    const off = hidden.has(r.id);
+    row.className = 'row' + (off ? ' off' : '');
+    row.innerHTML = `<span class="sw dash" style="color:${r.color}"></span>
+      <span class="txt"><div class="name"></div><div class="meta">${rideDate(r.date)} · ${fmtKm(r.len)} · ↑${r.up} m</div></span>
+      <button class="eye" aria-label="${off ? 'Mostra' : 'Nascondi'} ${r.name}">${off ? eyeOff : eyeOn}</button>`;
+    row.querySelector('.name').textContent = r.name;
+    row.addEventListener('click', () => focusTrack(r));
+    row.querySelector('.eye').addEventListener('click', (e) => { e.stopPropagation(); setHidden(r, !hidden.has(r.id)); });
+    box.appendChild(row);
+  }
 }
 
 function focusTrack(t) {
@@ -302,6 +357,12 @@ fetch('tracks.json').then((r) => r.json()).then((data) => {
   for (const t of tracks) { t.cum = cumulative(t.pts); drawTrack(t); }
   renderList();
 }).catch(() => showStatus('Non riesco a caricare i sentieri. Controlla la connessione e ricarica.'));
+
+fetch('rides.json').then((r) => r.json()).then((data) => {
+  rides = data;
+  for (const r of rides) drawRide(r);
+  renderRides();
+}).catch(() => { /* senza giri la mappa funziona lo stesso */ });
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));

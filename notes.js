@@ -325,6 +325,7 @@ viewer.addEventListener('click', () => { viewer.hidden = true; });
 document.querySelectorAll('.tabs button').forEach((b) => b.addEventListener('click', () => {
   document.querySelectorAll('.tabs button').forEach((x) => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-selected', on); });
   $('#list').hidden = b.dataset.tab !== 'list';
+  $('#rides').hidden = b.dataset.tab !== 'rides';
   $('#notes').hidden = b.dataset.tab !== 'notes';
   if (b.dataset.tab === 'notes') renderNotes();
 }));

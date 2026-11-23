@@ -33,7 +33,7 @@
   </button>
 </div>
 
-<button id="btn-note" class="fab fab-note" hiddenaria-label="Nuova nota o foto in questo punto" title="Nuova nota / foto">
+<button id="btn-note" class="fab fab-note" hidden aria-label="Nuova nota o foto in questo punto" title="Nuova nota / foto">
   <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M19 2v6M16 5h6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
 </button>
 
@@ -44,9 +44,11 @@
   </button>
   <div class="tabs" role="tablist">
     <button role="tab" data-tab="list" class="on" aria-selected="true">Sentieri</button>
+    <button role="tab" data-tab="rides" aria-selected="false">Giri <span id="rides-count" class="count">0</span></button>
     <button role="tab" data-tab="notes" aria-selected="false">Note <span id="notes-count" class="count">0</span></button>
   </div>
   <div id="list" class="list"></div>
+  <div id="rides" class="list" hidden></div>
   <div id="notes" class="list" hidden>
     <div id="sync-box" class="sync-box"></div>
     <div id="notes-list"></div>

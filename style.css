@@ -46,6 +46,7 @@ button{font:inherit;color:inherit}
 .row:last-child{border-bottom:0}
 .row.off .name,.row.off .meta{opacity:.4}
 .sw{width:22px;height:6px;border-radius:3px;flex:none}
+.sw.dash{height:4px;border-radius:0;background:repeating-linear-gradient(90deg,currentColor 0 6px,transparent 6px 10px)}
 .txt{flex:1;min-width:0}
 .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .meta{color:var(--muted);font-size:12.5px;font-variant-numeric:tabular-nums}
