@@ -22,6 +22,7 @@ Mappa da portare in giro dei sentieri e-bike/MTB di Monte Nero e dintorni (Bordi
 Scheda **Giri** nel pannello in basso: le uscite registrate, con data, orari, km, dislivello e tempo in movimento. Sulla mappa sono tratteggiate e stanno sotto i sentieri; l'occhio le nasconde. Non contano per "Sei su…".
 
 - 23.11.26 · **Monte Carparo - Bordighera**: 40,9 km, ↑ 1499 m.
+- 21.11.26 · **Monte Nero - Giro del Sabato**: 24,8 km, ↑ 840 m ([komoot](https://www.komoot.com/tour/3401889958)).
 
 ## Note e foto dei sopralluoghi
 
