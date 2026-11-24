@@ -6,7 +6,7 @@ Mappa da portare in giro dei sentieri e-bike/MTB di Monte Nero e dintorni (Bordi
 
 ## Cosa fa
 
-- **15 sentieri** sulla mappa topografica, con inizio (pallino pieno) e fine (pallino vuoto).
+- **16 sentieri** sulla mappa topografica, con inizio (pallino pieno) e fine (pallino vuoto).
 - **La tua posizione** (pulsante in alto a destra): punto blu con precisione e direzione di marcia.
   - Primo tocco: ti trova e ti segue. Se sposti la mappa a mano smette di seguirti; tocca di nuovo per ricentrare. Terzo tocco: spegne il GPS.
   - In alto ti dice su quale sentiero sei, quanto hai fatto e quanto manca, oppure qual è il sentiero più vicino e a che distanza.

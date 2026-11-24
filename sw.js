@@ -1,6 +1,6 @@
 // Service worker: l'app e i sentieri restano disponibili offline,
 // e i riquadri della mappa visti (o scaricati) vengono conservati.
-const APP_CACHE = 'app-v8';
+const APP_CACHE = 'app-v9';
 const TILE_CACHE = 'tiles-v1';
 const APP_FILES = [
   './', 'index.html', 'style.css', 'app.js', 'notes.js', 'tracks.json', 'rides.json', 'confini.json', 'manifest.webmanifest',
