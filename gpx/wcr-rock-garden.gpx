@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="sentieri-monte-nero" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>WCR Rock Garden</name>
+    <desc>Fonte: Trailforks. Singletrack, difficoltà blu, in discesa. Quote dai rilievi personali.</desc>
+    <link href="https://www.trailforks.com/trails/wcr-rock-garden/"><text>Trailforks</text></link>
+  </metadata>
+  <trk>
+    <name>WCR Rock Garden</name>
+    <type>mtb</type>
+    <trkseg>
+      <trkpt lat="43.80068" lon="7.68207"><ele>386</ele></trkpt>
+      <trkpt lat="43.80052" lon="7.68181"><ele>386</ele></trkpt>
+      <trkpt lat="43.80029" lon="7.68155"><ele>387</ele></trkpt>
+      <trkpt lat="43.80017" lon="7.68139"><ele>410</ele></trkpt>
+      <trkpt lat="43.79988" lon="7.68081"><ele>399</ele></trkpt>
+      <trkpt lat="43.79969" lon="7.6807"><ele>395</ele></trkpt>
+      <trkpt lat="43.79955" lon="7.68074"><ele>391</ele></trkpt>
+      <trkpt lat="43.79948" lon="7.68073"><ele>387</ele></trkpt>
+      <trkpt lat="43.79929" lon="7.68058"><ele>383</ele></trkpt>
+      <trkpt lat="43.79914" lon="7.6806"><ele>379</ele></trkpt>
+      <trkpt lat="43.79908" lon="7.68055"><ele>375</ele></trkpt>
+      <trkpt lat="43.79895" lon="7.68049"><ele>370</ele></trkpt>
+      <trkpt lat="43.79885" lon="7.68037"><ele>366</ele></trkpt>
+      <trkpt lat="43.79872" lon="7.68034"><ele>362</ele></trkpt>
+      <trkpt lat="43.79863" lon="7.68028"><ele>358</ele></trkpt>
+      <trkpt lat="43.79856" lon="7.68029"><ele>354</ele></trkpt>
+      <trkpt lat="43.7984" lon="7.68043"><ele>350</ele></trkpt>
+      <trkpt lat="43.79832" lon="7.68042"><ele>346</ele></trkpt>
+      <trkpt lat="43.79824" lon="7.68038"><ele>341</ele></trkpt>
+      <trkpt lat="43.79818" lon="7.68038"><ele>341</ele></trkpt>
+      <trkpt lat="43.79814" lon="7.68043"><ele>340</ele></trkpt>
+      <trkpt lat="43.79813" lon="7.68048"><ele>340</ele></trkpt>
+      <trkpt lat="43.79817" lon="7.6808"><ele>336</ele></trkpt>
+      <trkpt lat="43.79813" lon="7.68084"><ele>335</ele></trkpt>
+      <trkpt lat="43.79807" lon="7.68082"><ele>334</ele></trkpt>
+      <trkpt lat="43.79798" lon="7.68069"><ele>333</ele></trkpt>
+      <trkpt lat="43.79792" lon="7.68057"><ele>331</ele></trkpt>
+      <trkpt lat="43.7978" lon="7.68017"><ele>326</ele></trkpt>
+      <trkpt lat="43.79775" lon="7.67989"><ele>323</ele></trkpt>
+      <trkpt lat="43.79775" lon="7.67949"><ele>318</ele></trkpt>
+      <trkpt lat="43.7977" lon="7.67933"><ele>317</ele></trkpt>
+      <trkpt lat="43.79765" lon="7.67931"><ele>316</ele></trkpt>
+      <trkpt lat="43.79761" lon="7.67934"><ele>316</ele></trkpt>
+      <trkpt lat="43.79727" lon="7.6798"><ele>308</ele></trkpt>
+      <trkpt lat="43.79723" lon="7.67983"><ele>307</ele></trkpt>
+      <trkpt lat="43.79717" lon="7.67975"><ele>306</ele></trkpt>
+      <trkpt lat="43.79708" lon="7.67938"><ele>301</ele></trkpt>
+      <trkpt lat="43.79706" lon="7.67922"><ele>299</ele></trkpt>
+      <trkpt lat="43.79707" lon="7.67894"><ele>296</ele></trkpt>
+      <trkpt lat="43.79705" lon="7.67881"><ele>293</ele></trkpt>
+      <trkpt lat="43.79701" lon="7.67874"><ele>292</ele></trkpt>
+      <trkpt lat="43.79694" lon="7.6787"><ele>291</ele></trkpt>
+      <trkpt lat="43.79665" lon="7.67868"><ele>284</ele></trkpt>
+      <trkpt lat="43.79651" lon="7.67864"><ele>281</ele></trkpt>
+      <trkpt lat="43.79643" lon="7.67856"><ele>280</ele></trkpt>
+      <trkpt lat="43.7963" lon="7.67835"><ele>276</ele></trkpt>
+      <trkpt lat="43.79593" lon="7.67819"><ele>267</ele></trkpt>
+      <trkpt lat="43.79573" lon="7.67802"><ele>262</ele></trkpt>
+      <trkpt lat="43.7956" lon="7.67794"><ele>260</ele></trkpt>
+      <trkpt lat="43.7955" lon="7.67776"><ele>258</ele></trkpt>
+      <trkpt lat="43.79535" lon="7.6776"><ele>255</ele></trkpt>
+      <trkpt lat="43.79494" lon="7.67723"><ele>248</ele></trkpt>
+      <trkpt lat="43.79478" lon="7.67712"><ele>246</ele></trkpt>
+      <trkpt lat="43.79457" lon="7.67705"><ele>243</ele></trkpt>
+      <trkpt lat="43.79438" lon="7.67688"><ele>240</ele></trkpt>
+      <trkpt lat="43.79432" lon="7.67687"><ele>240</ele></trkpt>
+      <trkpt lat="43.79416" lon="7.67691"><ele>237</ele></trkpt>
+      <trkpt lat="43.79412" lon="7.6769"><ele>237</ele></trkpt>
+      <trkpt lat="43.79399" lon="7.67677"><ele>235</ele></trkpt>
+      <trkpt lat="43.79397" lon="7.67679"><ele>234</ele></trkpt>
+      <trkpt lat="43.79397" lon="7.67683"><ele>234</ele></trkpt>
+      <trkpt lat="43.79405" lon="7.67699"><ele>232</ele></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

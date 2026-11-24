@@ -73,7 +73,7 @@ const group = L.featureGroup().addTo(map);
 function popupHtml(t) {
   const el = (t.up != null) ? ` · ↑ ${t.up} m · ↓ ${t.down} m` : '';
   const links = [`<a href="${t.gpx}" download>Scarica GPX</a>`];
-  if (t.url) links.push(`<a href="${t.url}" target="_blank" rel="noopener">Apri su komoot</a>`);
+  if (t.url) links.push(`<a href="${t.url}" target="_blank" rel="noopener">Apri su ${t.src === 'trailforks' ? 'Trailforks' : 'komoot'}</a>`);
   return `<div class="pop"><h4>${t.name}</h4><div class="meta">${fmtKm(t.len)}${el}</div>${links.join('')}</div>`;
 }
 
