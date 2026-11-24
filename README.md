@@ -13,6 +13,7 @@ Mappa da portare in giro dei sentieri e-bike/MTB di Monte Nero e dintorni (Bordi
   - Lo schermo resta acceso mentre il GPS è attivo, dove il telefono lo permette.
   - La posizione resta sul telefono, non viene inviata a nessuno.
 - **Elenco sentieri** (pannello in basso): ordinati dal più vicino quando il GPS è attivo. Tocca un sentiero per inquadrarlo; l'occhio lo mostra o nasconde.
+- **Confini comunali** (linea grigia tratto-punto, con il nome del comune): si accendono e spengono dal pulsante dei livelli in basso a destra. Fonte: OpenStreetMap.
 - **Scarica GPX** e **Apri su komoot** dal fumetto di ogni sentiero.
 - **Funziona senza segnale**: il pulsante con la freccia in giù salva sul telefono la mappa topografica della zona (circa 30 MB, meglio col Wi-Fi). Anche i riquadri già visti restano salvati.
 
@@ -52,8 +53,9 @@ Si apre a tutto schermo come un'app e funziona anche offline.
 - `index.html`, `app.js`, `notes.js`, `style.css`: l'app (Leaflet 1.9.4 in `vendor/`).
 - `sopralluoghi/`: note e foto caricate dall'app (si crea al primo caricamento).
 - `tracks.json`: le tracce usate dalla mappa.
+- `confini.json`: confini dei comuni della zona (OpenStreetMap, semplificati).
 - `rides.json`: i giri completati (traccia semplificata e statistiche).
 - `gpx/`: le tracce in GPX; `gpx/giri/` i giri completi.
 - `sw.js`, `manifest.webmanifest`: funzionamento offline e installazione.
 
-Mappe: © OpenTopoMap, © OpenStreetMap, © Esri. Tracce: rilievi personali e komoot.
+Mappe: © OpenTopoMap, © OpenStreetMap, © Esri. Confini comunali: © OpenStreetMap (ODbL). Tracce: rilievi personali e komoot.

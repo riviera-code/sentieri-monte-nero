@@ -26,7 +26,7 @@ const layers = {
 const baseName = ls.get('base', 'Topografica');
 const map = L.map('map', { zoomControl: false, layers: [layers[baseName] || layers['Topografica']] });
 map.attributionControl.setPrefix(false);
-L.control.layers(layers, null, { position: 'bottomright' }).addTo(map);
+const layersCtl = L.control.layers(layers, null, { position: 'bottomright' }).addTo(map);
 L.control.scale({ imperial: false, position: 'bottomleft' }).addTo(map);
 map.on('baselayerchange', (e) => ls.set('base', e.name));
 map.fitBounds(ZONE);
@@ -357,6 +357,30 @@ fetch('tracks.json').then((r) => r.json()).then((data) => {
   for (const t of tracks) { t.cum = cumulative(t.pts); drawTrack(t); }
   renderList();
 }).catch(() => showStatus('Non riesco a caricare i sentieri. Controlla la connessione e ricarica.'));
+
+// ---------- confini comunali (OpenStreetMap) ----------
+map.createPane('confini').style.zIndex = 380; // sotto giri e sentieri
+map.getPane('confini').style.pointerEvents = 'none';
+const confini = L.layerGroup();
+fetch('confini.json').then((r) => r.json()).then((data) => {
+  const opt = { pane: 'confini', interactive: false };
+  for (const l of data.lines) {
+    L.polyline(l, { ...opt, color: '#fff', weight: 5, opacity: 0.6 }).addTo(confini);
+    L.polyline(l, { ...opt, color: '#37474f', weight: 2, opacity: 0.9, dashArray: '10 4 2 4' }).addTo(confini);
+  }
+  for (const n of data.names) {
+    const icon = L.divIcon({ className: 'comune', html: `<span></span>`, iconSize: null });
+    const m = L.marker(n.at, { icon, pane: 'confini', interactive: false, keyboard: false });
+    m.on('add', () => { m.getElement().firstChild.textContent = n.name; });
+    m.addTo(confini);
+  }
+  layersCtl.addOverlay(confini, 'Confini comunali');
+  if (ls.get('confini', true)) confini.addTo(map);
+  map.attributionControl.addAttribution('Confini © OpenStreetMap');
+}).catch(() => { /* senza confini la mappa funziona lo stesso */ });
+map.on('overlayadd overlayremove', (e) => { if (e.layer === confini) ls.set('confini', e.type === 'overlayadd'); });
+const syncLabels = () => map.getContainer().classList.toggle('no-comuni', map.getZoom() < 12);
+map.on('zoomend', syncLabels); syncLabels();
 
 fetch('rides.json').then((r) => r.json()).then((data) => {
   rides = data;
