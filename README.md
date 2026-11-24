@@ -13,7 +13,7 @@ Mappa da portare in giro dei sentieri e-bike/MTB di Monte Nero e dintorni (Bordi
   - Lo schermo resta acceso mentre il GPS è attivo, dove il telefono lo permette.
   - La posizione resta sul telefono, non viene inviata a nessuno.
 - **Elenco sentieri** (pannello in basso): ordinati dal più vicino quando il GPS è attivo. Tocca un sentiero per inquadrarlo; l'occhio lo mostra o nasconde.
-- **Confini comunali** (linea grigia tratto-punto, con il nome del comune): si accendono e spengono dal pulsante dei livelli in basso a destra. Fonte: OpenStreetMap.
+- **Confini comunali** (linea grigia tratto-punto, con il nome del comune al centro e, avvicinando la mappa, in piccolo lungo il confine da entrambi i lati): si accendono e spengono dal pulsante dei livelli in basso a destra. Fonte: OpenStreetMap.
 - **Scarica GPX** e **Apri su komoot** dal fumetto di ogni sentiero.
 - **Funziona senza segnale**: il pulsante con la freccia in giù salva sul telefono la mappa topografica della zona (circa 30 MB, meglio col Wi-Fi). Anche i riquadri già visti restano salvati.
 

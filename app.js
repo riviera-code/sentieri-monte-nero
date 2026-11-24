@@ -361,6 +361,8 @@ fetch('tracks.json').then((r) => r.json()).then((data) => {
 // ---------- confini comunali (OpenStreetMap) ----------
 map.createPane('confini').style.zIndex = 380; // sotto giri e sentieri
 map.getPane('confini').style.pointerEvents = 'none';
+map.createPane('confini-nomi').style.zIndex = 450; // nomi sopra le tracce, sotto i segnaposto
+map.getPane('confini-nomi').style.pointerEvents = 'none';
 const confini = L.layerGroup();
 fetch('confini.json').then((r) => r.json()).then((data) => {
   const opt = { pane: 'confini', interactive: false };
@@ -370,8 +372,15 @@ fetch('confini.json').then((r) => r.json()).then((data) => {
   }
   for (const n of data.names) {
     const icon = L.divIcon({ className: 'comune', html: `<span></span>`, iconSize: null });
-    const m = L.marker(n.at, { icon, pane: 'confini', interactive: false, keyboard: false });
+    const m = L.marker(n.at, { icon, pane: 'confini-nomi', interactive: false, keyboard: false });
     m.on('add', () => { m.getElement().firstChild.textContent = n.name; });
+    m.addTo(confini);
+  }
+  // nomi piccoli lungo il confine, ruotati e spostati verso l'interno del comune
+  for (const [lat, lng, ang, side, name, minZ] of data.edges || []) {
+    const icon = L.divIcon({ className: `comune-bordo z${minZ}`, html: `<span style="--a:${ang}deg;--s:${side * 8}px"></span>`, iconSize: null });
+    const m = L.marker([lat, lng], { icon, pane: 'confini-nomi', interactive: false, keyboard: false });
+    m.on('add', () => { m.getElement().firstChild.textContent = name; });
     m.addTo(confini);
   }
   layersCtl.addOverlay(confini, 'Confini comunali');
@@ -379,7 +388,12 @@ fetch('confini.json').then((r) => r.json()).then((data) => {
   map.attributionControl.addAttribution('Confini © OpenStreetMap');
 }).catch(() => { /* senza confini la mappa funziona lo stesso */ });
 map.on('overlayadd overlayremove', (e) => { if (e.layer === confini) ls.set('confini', e.type === 'overlayadd'); });
-const syncLabels = () => map.getContainer().classList.toggle('no-comuni', map.getZoom() < 12);
+const syncLabels = () => {
+  const z = map.getZoom(), c = map.getContainer().classList;
+  c.toggle('no-comuni', z < 12);
+  c.toggle('bordi-14', z >= 14);
+  c.toggle('bordi-16', z >= 16);
+};
 map.on('zoomend', syncLabels); syncLabels();
 
 fetch('rides.json').then((r) => r.json()).then((data) => {
